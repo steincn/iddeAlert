@@ -1,9 +1,11 @@
 ## Preliminary Hydrologic Anomaly Notification Script
-Current USGS Water Alerts do not handle condition logic, such as
-nofictication of stage increase in the absense of preciptation at
+Current USGS Water Alerts do not handle conditional logic, such as
+notification of stage increase in the absence of precipitation at
 nearby gages.  This is an initial crack at setting up R scripts to
-generate an email alert when an anomalous stage increase occurs.  This
-could help to identify illicit discharges.
+generate an email alert when an anomalous stage increase occurs,
+combined with a web scraping approach to check for anomalous YSI data
+readings.  Properly calibrated, this could help to identify illicit
+discharges.
 
 ### alertScript.r
 This script does two NWIS pulls for stage and precipitation,
@@ -13,5 +15,12 @@ detected AND only a minimum of precip is observed, an email alert is sent.
 
 ### alertScheduler.r
 This script schedules the alertScript.  As currently configured, it
-will run every 5 minutes.  The final call to taskscheduler_delete is
-needed to remove the task from the Windows task schedule. 
+will run every 5 minutes, or as set.  The final call to
+taskscheduler_delete is needed to remove the task from the Windows
+task schedule.
+
+### seleniumHydromet.r
+This is a working standalone script to utilize the Rselenium library and a
+docker container to go to the YSI data portal, select a site, and grab
+most recent YSI readings.  This will allow for flow, precip, and YSI
+data be used in a single conditional alert framework.
