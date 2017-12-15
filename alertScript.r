@@ -3,9 +3,12 @@ rm(list=ls()); graphics.off()
 suppressPackageStartupMessages(library("dataRetrieval"))
 suppressPackageStartupMessages(library("dplyr"))
 suppressPackageStartupMessages(library("gmailr"))
+suppressPackageStartupMessages(library("ggplot2"))
+suppressPackageStartupMessages(library("gridExtra"))
 
 ## Set dir for script while in batch mode, load gmail credentials
-setwd("c:/Users/95218/Documents/R/public/iddeAlert")
+#setwd("c:/Users/95218/Documents/R/public/iddeAlert") #jn directory
+setwd("C:/Users/andreca/Documents/IDDEAlerts") #cb directory
 use_secret_file('idde-alert.json')
 
 #############################################################################
